@@ -39,9 +39,10 @@
 
 <p align="center">
   <em>Recorded 2026-09-14, unedited — the desktop fleet console: one prompt, split by the coordinator into 12 sub-tasks
-  across Windows, macOS, iOS and Android; every tile returns its own output and a verified receipt.<br>
-  2026-09-14 實錄、未剪輯：主控台打一個 prompt，coordinator 拆成 12 份子任務給 8 台裝置上的 AI CLI 與手機執行端，每格帶回自己的輸出與驗證過的收據。
-  <a href="demos/06-fleet-console-one-prompt.md">Demo 06 →</a></em>
+  across Windows, macOS, iOS and Android; every tile returns its own output and a verified receipt, and the coordinator
+  then merges the twelve answers into one 整合輸出 with a contributor tag per section.<br>
+  2026-09-14 實錄、未剪輯：主控台打一個 prompt，coordinator 拆成 12 份子任務給 8 台裝置上的 AI CLI 與手機執行端，每格帶回自己的輸出與驗證過的收據，最後再把 12 份答案合成一份整合輸出。
+  <a href="demos/06-fleet-console-one-prompt.md">Demo 06 →</a> · <a href="demos/transcripts/2026-09-14-0946-tech-talk-plan.md">逐字稿 / transcript →</a></em>
 </p>
 
 ---
