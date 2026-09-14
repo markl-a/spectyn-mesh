@@ -33,6 +33,17 @@
   signed governance flight-recorder, MCP tool exposure, and goal orchestration. Not yet released.</em>
 </p>
 
+<p align="center">
+  <img src="demos/mesh-console-one-prompt-2026-09-14.gif" alt="Fleet console: one prompt fanned out to 12 AI CLIs and app-local executors on 8 devices, each returning its own sub-task, output and verified receipt" width="820">
+</p>
+
+<p align="center">
+  <em>Recorded 2026-09-14, unedited — the desktop fleet console: one prompt, split by the coordinator into 12 sub-tasks
+  across Windows, macOS, iOS and Android; every tile returns its own output and a verified receipt.<br>
+  2026-09-14 實錄、未剪輯：主控台打一個 prompt，coordinator 拆成 12 份子任務給 8 台裝置上的 AI CLI 與手機執行端，每格帶回自己的輸出與驗證過的收據。
+  <a href="demos/06-fleet-console-one-prompt.md">Demo 06 →</a></em>
+</p>
+
 ---
 
 ## What it is

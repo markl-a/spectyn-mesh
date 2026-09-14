@@ -15,6 +15,7 @@
 | 03 | **LM Studio remote model over Tailscale** | 對既有安裝使用者群來說易於上手的進入點（D6 情境） |
 | 04 | **Frigate + VLM "package delivered" alert** | Homelab（家用實驗室）使用者——具體且帶情感（F3 情境） |
 | 05 | **Night-shift refactor → 8 PRs at 7am** | 開發者／獨立開發者（indie hacker）市場（D5 情境） |
+| 06 | **One prompt → every AI CLI on 8 devices**（[已錄製 2026-09-14](06-fleet-console-one-prompt.md)） | 主控台實錄：一個 prompt 拆成 12 份子任務，Windows／macOS／iOS／Android 各自完成並回收據 |
 
 ## 格式
 
