@@ -11,6 +11,47 @@
 >
 > **This project is being redesigned from the architecture up.** The coordinator/worker contract, the adapter layer and the phone-side design may all be replaced. Everything below describes the pre-rebuild version — read it as a snapshot, and do not depend on any interface, command or data format. Three weeks of real runs exposed seams (no coordinator failover; subtask roles and language left to the planner; the receipt nonce rule fighting the output cap), and the open-source landscape now has things worth measuring against (A2A, Orca, Paperclip, Gas Town). Progress is logged in this repo's commits and in the two iThome Ironman series linked above.
 
+## 重造的方向：一句話、三層、三張清單
+
+> **Spectyn：用你自己的機器組一支 AI 艦隊，每一件事都有收據，資料不出你的門。**
+> *Spectyn: a fleet of AI agents on machines you already own — every action leaves a receipt, and your data never leaves your door.*
+
+這不是一個新的 orchestrator。2026-09 查證過 55 個開源專案之後（[評比與動能表](https://claude.ai/artifact/LPnRagS8scKt2nXLEg7WCo)）的結論是：每一層都有人做得比我們好、而且會一直做下去；**沒有人做的只有三件事——手機當 worker、有簽章的 receipt、量測合併品質。** 所以專案改成一套**有主見的組合**（像 Omarchy 之於 Arch），自己只寫那一薄層。
+
+| 層 | 內容 | 來源 |
+|---|---|---|
+| **三・核心**（自己寫） | Sealed Task Envelope 與 receipt 鏈（[MESH-CRYPTO-v1](docs/specs/MESH-CRYPTO-v1.md)）、手機 worker（§6 pull／report）、presence roster、評估層（採用率、角色、條目對應、合併自補） | 本 repo |
+| **二・艦隊**（借） | Omarchy 節點 OS、十個預接的 coding agent、Paperclip 派工／審批／預算、Orca cockpit、LiteLLM gateway、Ollama／llama.cpp 本地模型 | 各專案上游，釘 commit |
+| **一・地基**（借） | Headscale 控制平面、AdGuard Home、Vaultwarden、LibreWolf、RustDesk／Sunshine、wg-easy 出口、LUKS／FileVault、age／sops | 各專案上游，釘 commit |
+
+### 我們組什麼
+
+- 每一層只選**每天有 push、破百貢獻者、有組織背書**的專案；星數不計分。
+- 借法由便宜到貴：黑盒接（CLI／API）→ 搬單一模組（附 LICENSE）→ 抄設計自己寫（只在核心邊界）。
+- 借來的東西**只釘 commit 不追 main**；升級是一次有意識的 spike，不是 `git pull`。借力帳記 org 不只記專案名（一年內改名搬家的太多）。
+- 能推回上游的就推：讓他們維護，比自己養便宜。
+
+### 我們做什麼
+
+- **receipt**：nonce、輸出雜湊、執行位置、沙箱雜湊、出網帳，裝置 Ed25519 簽、hash 鏈、錨到外部透明日誌。coordinator 拿不到內容，也偽造不了 receipt。
+- **`local-only` 是鑰匙分發不是設定**：內容鑰只封給無網路沙箱裡的本地模型，雲端 adapter 沒有鑰。
+- **手機是 worker**：BYOK、前景執行、回 receipt。不是遙控器。
+- **兩把原理不同的尺並排量合併品質**，讀不懂就說「未分類」，不給假數字。
+
+### 我們拒絕什麼
+
+- 不寫自己的桌面 UI、worktree 管理、adapter 框架、VPN、DNS、密碼庫。
+- 不發明任何密碼學原語；不宣稱抗量子、不宣稱硬體保管、不宣稱經過密碼學家審查——[MESH-CRYPTO-v1 §9](docs/specs/MESH-CRYPTO-v1.md) 那種「明確不宣稱」是全專案的寫法。
+- 不讓產品的執行路徑經過作者自己的訂閱。
+- 不在有人付錢之前做 SaaS。
+- 不接受非 OSI 授權的核心依賴（ELv2、BSL、商業授權一律只當工具、不整合）。
+
+### 怎麼驗證這條路
+
+四個 spike，任一失敗就回頭：(1) 一台 Omarchy 節點接到 attempt 並回 receipt；(2) Paperclip 的 ticket 掛得上 receipt；(3) `spectyn` 註冊成 Orca 的 agent；(4) MONDAY-MESH-API 對照 A2A 的欄位表。進度在兩個鐵人賽系列與本 repo 的 commit。
+
+---
+
 <p align="center">
   <img src="site/logo.png" alt="Spectyn Mesh" width="280">
 </p>
