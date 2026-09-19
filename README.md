@@ -1,5 +1,16 @@
 # Spectyn Mesh
 
+> [!IMPORTANT]
+> ## 🔧 回廠重造中 · Back in the shop（2026-09）
+>
+> **這個專案正在從架構層重新設計。** 目前的 coordinator／worker 契約、adapter 層、手機端的做法整個可能推倒重來。下面的 README 描述的是重造前的版本——請當作歷史快照讀，**不要依賴任何介面、指令或資料格式。**
+>
+> 為什麼：三週的實測（十輪 fan-out、真機＋模擬器）把幾條設計上的縫暴露出來——沒有 coordinator 備援、子任務的角色和語言由 planner 自行決定、receipt 的 nonce 規則和輸出上限互相牴觸——同一時間開源生態長出了值得對照的東西（A2A 協定、Orca、Paperclip、Gas Town）。與其一條一條補，不如對照完再重畫。
+>
+> 進度公開記在兩個地方：本 repo 的 commit，以及 iThome 鐵人賽的兩個系列——[開發流水帳](https://ithelp.ithome.com.tw/users/20092056/ironman/9330)、[邊做邊補](https://ithelp.ithome.com.tw/users/20092056/ironman/9765)。
+>
+> **This project is being redesigned from the architecture up.** The coordinator/worker contract, the adapter layer and the phone-side design may all be replaced. Everything below describes the pre-rebuild version — read it as a snapshot, and do not depend on any interface, command or data format. Three weeks of real runs exposed seams (no coordinator failover; subtask roles and language left to the planner; the receipt nonce rule fighting the output cap), and the open-source landscape now has things worth measuring against (A2A, Orca, Paperclip, Gas Town). Progress is logged in this repo's commits and in the two iThome Ironman series linked above.
+
 <p align="center">
   <img src="site/logo.png" alt="Spectyn Mesh" width="280">
 </p>
@@ -10,14 +21,14 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/status-active%20development-orange.svg" alt="status: active development"> ·
+  <img src="https://img.shields.io/badge/status-rebuilding-red.svg" alt="status: rebuilding"> ·
   <img src="https://img.shields.io/badge/license-AGPL--3.0-green.svg" alt="license"> ·
   <img src="https://img.shields.io/badge/core-Rust-orange.svg" alt="rust"> ·
   <img src="https://img.shields.io/badge/app-Tauri-24C8DB.svg" alt="tauri">
 </p>
 
 > [!WARNING]
-> **🚧 Active development — v0.6.0. Not yet stable; not recommended for others to depend on.**
+> **🚧 v0.6.0 snapshot, superseded by the rebuild above. Not stable; not recommended for others to depend on.**
 > Direction, interfaces, and architecture may still change. This repo is a public, honest look at the
 > work in progress. Some subsystems below are solid and tested; others are early or stubbed — each is
 > marked explicitly. 方向與介面仍在演進,部分子系統已可用、部分仍在早期,文中均如實標註。
